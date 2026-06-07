@@ -34,26 +34,26 @@ jobs:
         run: pip install --upgrade pip -r requirements.txt
 
       - name: Scrape library web pages
-        env:
-          # Add your library URLs to urls.txt (committed to repo)
-          SCRAPE_URLS_FILE: urls.txt
+        continue-on-error: true
         run: |
-          if [ -f "$SCRAPE_URLS_FILE" ]; then
-            echo "Scraping URLs from $SCRAPE_URLS_FILE..."
-            python scripts/scrape.py --urls "$SCRAPE_URLS_FILE" \
-              --output documents/web/ --verbose
+          if [ -f "urls.txt" ]; then
+            echo "Scraping URLs from urls.txt..."
+            mkdir -p documents/web
+            python scripts/scrape.py --urls urls.txt --output documents/web/ --verbose || \
+              echo "Scraping encountered errors — continuing."
           else
             echo "No urls.txt found — skipping web scrape step."
-            echo "Create urls.txt with one URL per line to enable automatic scraping."
           fi
 
       - name: Ingest all documents
         run: |
-          echo "Ingesting documents from documents/ directory..."
-          python scripts/ingest.py \
-            --source documents/ \
-            --output chunks/ \
-            --verbose
+          mkdir -p documents chunks
+          if [ -z "$(find documents -type f 2>/dev/null)" ]; then
+            echo "No documents found in documents/ — skipping ingest."
+            exit 0
+          fi
+          echo "Ingesting documents..."
+          python scripts/ingest.py --source documents/ --output chunks/ --verbose
 
       - name: Embed and upsert to Pinecone
         env:
@@ -61,20 +61,24 @@ jobs:
           PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
           PINECONE_INDEX_HOST: ${{ secrets.PINECONE_INDEX_HOST }}
         run: |
-          # Find the latest chunks file
-          LATEST=$(ls -t chunks/*.jsonl | head -1)
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY not set — skipping embed step."
+            echo "Add it in: Settings → Secrets and variables → Actions"
+            exit 0
+          fi
+          LATEST=$(ls -t chunks/*.jsonl 2>/dev/null | head -1)
           if [ -z "$LATEST" ]; then
-            echo "No chunk files found — nothing to embed."
+            echo "No chunk files found — skipping embed step."
             exit 0
           fi
           echo "Embedding and uploading: $LATEST"
           python scripts/embed.py --input "$LATEST" --verbose
 
-      - name: Commit updated chunks metadata
+      - name: Commit updated metadata
+        continue-on-error: true
         run: |
           git config user.name  "HCT Library Bot"
           git config user.email "library@hct.ac.ae"
-          # Only commit the manifest, not the large chunk files
           git add knowledge_base/manifest.json || true
           git diff --staged --quiet || \
             git commit -m "chore: weekly KB refresh [skip ci]"
@@ -82,7 +86,9 @@ jobs:
 
       - name: Summary
         run: |
-          echo "Knowledge base refresh complete."
+          echo "========================================"
+          echo "Knowledge base refresh complete"
           echo "Timestamp: $(date -u +"%Y-%m-%d %H:%M UTC")"
           CHUNK_COUNT=$(cat chunks/*.jsonl 2>/dev/null | wc -l || echo 0)
-          echo "Total chunks indexed: $CHUNK_COUNT"
+          echo "Chunks indexed: $CHUNK_COUNT"
+          echo "========================================"
