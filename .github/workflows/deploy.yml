@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:           # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          for f in $(find . -name "*.json" -not -path "./.git/*"); do
+            python3 -c "import json; json.load(open('$f'))" && echo "  ✓ $f" || exit 1
+          done
+
+      - name: Update version timestamp
+        run: |
+          # Inject build timestamp into config.json
+          BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT_SHA="${{ github.sha }}"
+          python3 - <<EOF
+          import json
+          with open('config.json', 'r') as f:
+              config = json.load(f)
+          config['build'] = {
+              'timestamp': '$BUILD_TIME',
+              'commit': '${COMMIT_SHA:0:7}'
+          }
+          with open('config.json', 'w') as f:
+              json.dump(config, f, indent=2)
+          print(f"Build info: $BUILD_TIME @ ${COMMIT_SHA:0:7}")
+          EOF
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Print deployment URL
+        run: |
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "Chat interface: ${{ steps.deployment.outputs.page_url }}index.html"
+          echo "Widget script:  ${{ steps.deployment.outputs.page_url }}widget.js"

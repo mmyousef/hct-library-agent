@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-06-07",
+  "updated_by": "Systems Librarian",
+  "note": "RESTRICTED: Do not share this file outside the authorised library systems team. Add actual prohibited terms in the 'terms' arrays. Current terms are placeholders.",
+  "categories": [
+    {
+      "id": "sexual_explicit",
+      "label": "Sexually Explicit Content",
+      "enabled": true,
+      "response_template": "formal_refusal_general",
+      "log_level": "warning",
+      "terms": ["[ADD-TERMS]"],
+      "phrases": ["[ADD-PHRASES]"],
+      "regex_patterns": ["\\b(porn|xxx|adult.?content|explicit.?material)\\b"]
+    },
+    {
+      "id": "violence_harm",
+      "label": "Violence & Self-Harm",
+      "enabled": true,
+      "response_template": "formal_refusal_sensitive",
+      "log_level": "critical",
+      "terms": ["[ADD-TERMS]"],
+      "phrases": ["[ADD-PHRASES]"],
+      "regex_patterns": ["\\b(how.?to.?kill|suicide.?method|self.?harm.?way)\\b"]
+    },
+    {
+      "id": "hate_speech",
+      "label": "Discrimination & Hate Speech",
+      "enabled": true,
+      "response_template": "formal_refusal_general",
+      "log_level": "warning",
+      "terms": ["[ADD-TERMS]"],
+      "phrases": ["[ADD-PHRASES]"],
+      "regex_patterns": []
+    },
+    {
+      "id": "illegal_activity",
+      "label": "Illegal Activities",
+      "enabled": true,
+      "response_template": "formal_refusal_general",
+      "log_level": "warning",
+      "terms": ["[ADD-TERMS]"],
+      "phrases": ["[ADD-PHRASES]"],
+      "regex_patterns": ["\\b(how.?to.?hack|pirate.?software|crack.?license)\\b"]
+    },
+    {
+      "id": "plagiarism",
+      "label": "Academic Dishonesty",
+      "enabled": true,
+      "response_template": "formal_refusal_academic",
+      "log_level": "info",
+      "terms": [],
+      "phrases": [
+        "write my essay",
+        "write my assignment",
+        "do my homework",
+        "complete my assignment for me",
+        "write my thesis",
+        "write this assignment",
+        "do this for me and submit"
+      ],
+      "regex_patterns": ["\\b(write.{1,20}(essay|assignment|report|thesis).{1,20}(for me|submit))\\b"]
+    },
+    {
+      "id": "out_of_scope",
+      "label": "Clearly Out-of-Scope Topics",
+      "enabled": true,
+      "response_template": "formal_refusal_scope",
+      "log_level": "info",
+      "terms": [],
+      "phrases": [
+        "give me your opinion on politics",
+        "who should i vote for",
+        "predict stock prices",
+        "invest in",
+        "medical advice for my condition"
+      ],
+      "regex_patterns": []
+    }
+  ],
+  "response_templates": {
+    "formal_refusal_general": "Thank you for your message.\n\nYour query falls outside the scope of services provided by the HCT Library AI Agent. This assistant is designed to support academic research, library resource discovery, and institutional information related to HCT Library services.\n\nFor assistance with your academic or research needs, please:\n• Visit the HCT Library website: https://library.hct.ac.ae\n• Contact the Reference Desk: library@hct.ac.ae\n• Speak with a subject librarian during library operating hours\n\nWe value your understanding and look forward to assisting you with your academic enquiries.",
+
+    "formal_refusal_sensitive": "Thank you for your message.\n\nThe HCT Library AI Agent is unable to respond to this type of query. If you are experiencing personal difficulties, HCT provides confidential support through Student Affairs and Counselling Services.\n\nFor academic and library assistance, please contact:\n• Reference Desk: library@hct.ac.ae\n• Library website: https://library.hct.ac.ae\n\nYour wellbeing matters. Please do not hesitate to reach out to the appropriate HCT support services.",
+
+    "formal_refusal_academic": "Thank you for your message.\n\nThe HCT Library AI Agent is not able to write, complete, or assist with academic work intended for submission as your own — this includes essays, assignments, reports, or examination answers.\n\nHowever, I would be delighted to help you with:\n• Finding relevant academic sources and databases\n• Understanding citation and referencing (APA 7th edition)\n• Accessing writing guides and academic integrity resources\n• Connecting you with library research support services\n\nPlease ask a new question and I will be happy to assist.",
+
+    "formal_refusal_scope": "Thank you for your message.\n\nThe HCT Library AI Agent is designed specifically for library and academic research assistance and is not able to assist with this type of query.\n\nI can help you with:\n• Searching library databases and e-resources\n• Citation and referencing guidance\n• Library policies and services\n• Research strategy and information literacy\n\nPlease feel free to ask a library-related question.",
+
+    "formal_refusal_privacy": "Thank you for your message.\n\nThe HCT Library AI Agent is not able to provide personal information about individuals. This policy protects the privacy of all HCT community members.\n\nFor official contact information, please visit https://library.hct.ac.ae or contact the library reception directly."
+  }
+}

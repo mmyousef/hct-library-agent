@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-06-07",
+  "description": "Manifest of all documents in the HCT Library knowledge base. Add your own documents here.",
+  "documents": [
+    {
+      "id": "faq-sample",
+      "filename": "faq_sample.json",
+      "type": "faq_json",
+      "category": "all",
+      "description": "Built-in HCT Library FAQ — sample content for demo mode",
+      "owner": "Systems Librarian",
+      "language": "en",
+      "update_frequency": "quarterly",
+      "active": true,
+      "note": "This is demo content. Add real documents below."
+    }
+  ],
+  "pending_documents": [
+    {
+      "note": "Add your library guides, policy PDFs, and web pages here. Format:",
+      "example": {
+        "id": "library-guide-databases",
+        "filename": "documents/reference/library_guide_databases.pdf",
+        "type": "pdf",
+        "category": "reference",
+        "description": "Library Guide: Finding and Using Databases",
+        "owner": "Reference Librarian",
+        "url": "https://library.hct.ac.ae/guides/databases",
+        "language": "en",
+        "update_frequency": "semester",
+        "active": true
+      }
+    }
+  ]
+}

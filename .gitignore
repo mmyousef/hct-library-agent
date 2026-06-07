@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Chunks (large auto-generated files — not committed)
+chunks/*.jsonl
+
+# Documents folder (add your own docs locally; don't commit sensitive PDFs)
+knowledge_base/documents/web/
+knowledge_base/documents/reference/*.pdf
+knowledge_base/documents/policies/*.pdf
+
+# Node
+node_modules/
+
+# Environment files (NEVER commit API keys)
+.env
+.env.local
+.env.production
+.dev.vars
+
+# macOS
+.DS_Store
+
+# Wrangler
+.wrangler/

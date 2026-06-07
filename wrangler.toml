@@ -1,0 +1,27 @@
+# Cloudflare Worker configuration
+# Deploy: wrangler deploy
+# Docs:   https://developers.cloudflare.com/workers/
+
+name = "hct-library-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespace for rate limiting
+# Create it first: wrangler kv:namespace create "RATE_LIMIT_KV"
+# Then replace the id below with the one wrangler prints out.
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Environment variables (non-secret)
+[vars]
+ENVIRONMENT = "production"
+
+# Secrets — set with: wrangler secret put SECRET_NAME
+# Required secrets:
+#   ANTHROPIC_API_KEY      — from https://console.anthropic.com
+#   OPENAI_API_KEY         — from https://platform.openai.com (for embeddings)
+#   PINECONE_API_KEY       — from https://app.pinecone.io
+#   PINECONE_INDEX_HOST    — your Pinecone index host URL
+#   SUPABASE_URL           — from https://app.supabase.com (optional)
+#   SUPABASE_ANON_KEY      — from Supabase project settings (optional)
