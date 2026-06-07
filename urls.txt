@@ -4,19 +4,25 @@
 # After adding URLs, run: python scripts/scrape.py --urls urls.txt --output knowledge_base/documents/web/
 
 # ── Main Library Pages ─────────────────────────────────────────────────────────
-# https://library.hct.ac.ae
-# https://library.hct.ac.ae/about
-# https://library.hct.ac.ae/databases
-# https://library.hct.ac.ae/borrowing
-# https://library.hct.ac.ae/services
+https://hct.ac.ae/en/libraries/
+https://hct.ac.ae/en/libraries/about-hct-library/
+https://hct.ac.ae/en/libraries/about-hct-library/library-staff-hours/
+https://hct.ac.ae/en/libraries/e-resources/all-databases/
+https://hct.ac.ae/en/libraries/e-resources/database-trials/
+https://hct.primo.exlibrisgroup.com/discovery/jsearch?vid=971HCT_INST:971HCT_VU1
+https://hct.ac.ae/en/libraries/supporting-you/borrowing-privileges/
+https://hct.ac.ae/en/libraries/supporting-you/interlibrary-loan/
+https://hct.ac.ae/en/libraries/supporting-you/recommend-a-purchase/
+Request an article
+https://myhctsupport.hct.ac.ae/HEAT/Modules/SelfService/?NoDefaultProvider=True#serviceCatalog/request/51A8DEA49F664FF79D7009BB3450371E
+https://library.hct.ac.ae/services
 
 # ── Library Guides ─────────────────────────────────────────────────────────────
-# https://library.hct.ac.ae/guides/citing-apa
-# https://library.hct.ac.ae/guides/databases
-# https://library.hct.ac.ae/guides/research
+https://libguides.hct.ac.ae/?b=s
+# 
 
 # ── Subject Guides (LibGuides) ─────────────────────────────────────────────────
-# https://guides.hct.ac.ae
+https://libguides.hct.ac.ae/?b=s
 
 # Instructions:
 # 1. Replace the example URLs above with your actual library URLs (remove the # prefix)
