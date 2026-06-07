@@ -43,20 +43,21 @@
     position: fixed;
     ${WIDGET_CONFIG.position === 'bottom-left' ? 'left: 22px' : 'right: 22px'};
     bottom: 22px;
-    width: 58px; height: 58px;
+    width: 62px; height: 62px;
     border-radius: 18px;
-    background: linear-gradient(135deg, #1a6fb0, #2a9d8f);
+    background: linear-gradient(145deg, #002E5D 0%, #0065BD 100%);
     border: none; cursor: pointer;
-    box-shadow: 0 6px 24px rgba(26,111,176,0.45);
+    box-shadow: 0 6px 28px rgba(0,46,93,0.55), 0 0 0 3px rgba(200,168,75,0.25);
     display: flex; align-items: center; justify-content: center;
     z-index: 999998;
     transition: transform 0.2s, box-shadow 0.2s;
-    font-size: 26px;
+    padding: 0;
   }
   #hct-widget-btn:hover {
-    transform: scale(1.07);
-    box-shadow: 0 8px 32px rgba(26,111,176,0.6);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 10px 36px rgba(0,46,93,0.65), 0 0 0 3px rgba(200,168,75,0.45);
   }
+  #hct-widget-btn .hct-btn-logo { width: 36px; height: 36px; display: block; }
   #hct-widget-btn .hct-notif {
     position: absolute; top: -4px; right: -4px;
     width: 16px; height: 16px;
@@ -70,7 +71,7 @@
     position: fixed;
     ${WIDGET_CONFIG.position === 'bottom-left' ? 'left: 16px' : 'right: 16px'};
     bottom: 92px;
-    width: 370px; height: 580px;
+    width: 440px; height: 680px;
     max-height: calc(100vh - 110px);
     background: #0d1f35;
     border-radius: 18px;
@@ -95,15 +96,19 @@
   }
 
   .hct-header {
-    background: linear-gradient(135deg, #1a6fb0, #2a9d8f);
+    background: linear-gradient(135deg, #001E3F 0%, #003670 60%, #004A8F 100%);
     padding: 14px 16px; display: flex; align-items: center;
     gap: 10px; flex-shrink: 0;
+    border-bottom: 2px solid rgba(200,168,75,0.35);
   }
   .hct-header-icon {
-    width: 36px; height: 36px; background: rgba(255,255,255,0.15);
-    border-radius: 10px; display: flex; align-items: center;
-    justify-content: center; font-size: 18px; flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: rgba(200,168,75,0.12);
+    border: 1px solid rgba(200,168,75,0.30);
+    border-radius: 11px; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
   }
+  .hct-header-icon svg { width: 24px; height: 24px; }
   .hct-header-text { flex: 1; }
   .hct-header-title { font-size: 14px; font-weight: 700; color: #fff; }
   .hct-header-sub { font-size: 10.5px; color: rgba(255,255,255,0.75); }
@@ -133,8 +138,9 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 13px; flex-shrink: 0;
   }
-  .hct-msg.bot  .hct-avatar { background: linear-gradient(135deg,#1a6fb0,#2a9d8f); }
-  .hct-msg.user .hct-avatar { background: rgba(255,255,255,0.1); }
+  .hct-msg.bot  .hct-avatar { background: linear-gradient(135deg,#002E5D,#0065BD); display:flex;align-items:center;justify-content:center; }
+  .hct-msg.bot  .hct-avatar svg { width:16px;height:16px; }
+  .hct-msg.user .hct-avatar { background: rgba(200,168,75,0.18); font-size:13px; }
 
   .hct-bubble {
     padding: 9px 12px; border-radius: 11px; font-size: 12.5px;
@@ -194,13 +200,40 @@
   const btn = document.createElement('button');
   btn.id = 'hct-widget-btn';
   btn.title = 'HCT Library AI Assistant';
-  btn.innerHTML = '📚<span class="hct-notif"></span>';
+  // Floating button logo: open book with AI spark
+  btn.innerHTML = `
+    <svg class="hct-btn-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Book left page -->
+      <path d="M18 28V10C18 10 13 8 7 9.5V27.5C13 26 18 28 18 28Z" fill="#C8A84B" opacity="0.90"/>
+      <!-- Book right page -->
+      <path d="M18 28V10C18 10 23 8 29 9.5V27.5C23 26 18 28 18 28Z" fill="#E2C06A" opacity="0.75"/>
+      <!-- Spine line -->
+      <rect x="17" y="9.5" width="2" height="19" rx="1" fill="#C8A84B"/>
+      <!-- AI sparkle top-right -->
+      <circle cx="27" cy="9" r="4.5" fill="#002E5D"/>
+      <path d="M27 6.5V11.5M24.5 9H29.5" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="27" cy="9" r="1.2" fill="#C8A84B"/>
+    </svg>
+    <span class="hct-notif"></span>`;
+
 
   const panel = document.createElement('div');
   panel.id = 'hct-panel';
   panel.innerHTML = `
     <div class="hct-header">
-      <div class="hct-header-icon">📚</div>
+      <div class="hct-header-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Book left page -->
+          <path d="M12 19.5V7C12 7 8.5 5.5 4 6.5V18.5C8.5 17.5 12 19.5 12 19.5Z" fill="#C8A84B" opacity="0.95"/>
+          <!-- Book right page -->
+          <path d="M12 19.5V7C12 7 15.5 5.5 20 6.5V18.5C15.5 17.5 12 19.5 12 19.5Z" fill="#E2C06A" opacity="0.75"/>
+          <!-- Spine -->
+          <rect x="11.25" y="6.5" width="1.5" height="13.5" rx="0.75" fill="#C8A84B"/>
+          <!-- AI spark circle -->
+          <circle cx="19" cy="5.5" r="3.5" fill="#001E3F" stroke="#C8A84B" stroke-width="0.75"/>
+          <path d="M19 3.8V7.2M17.3 5.5H20.7" stroke="#C8A84B" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="hct-header-text">
         <div class="hct-header-title">HCT Library Assistant</div>
         <div class="hct-header-sub">AI · Available 24/7</div>
@@ -268,7 +301,8 @@
     const d = document.createElement('div');
     d.className = `hct-msg ${role}`;
     const srcHTML = sources.length ? `<div class="hct-sources">${sources.map(s=>`<span class="hct-src-tag">📄 ${s}</span>`).join('')}</div>` : '';
-    d.innerHTML = `<div class="hct-avatar">${role==='bot'?'📚':'👤'}</div><div><div class="hct-bubble">${text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>${srcHTML}</div>`;
+    const botIcon = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 18V7C12 7 8.5 5.5 4 6.5V17.5C8.5 16.5 12 18 12 18Z" fill="#C8A84B" opacity="0.9"/><path d="M12 18V7C12 7 15.5 5.5 20 6.5V17.5C15.5 16.5 12 18 12 18Z" fill="#E2C06A" opacity="0.7"/><rect x="11.25" y="6.5" width="1.5" height="12" rx="0.75" fill="#C8A84B"/></svg>`;
+    d.innerHTML = `<div class="hct-avatar">${role==='bot' ? botIcon : '👤'}</div><div><div class="hct-bubble">${text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>${srcHTML}</div>`;
     msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight;
   }
@@ -277,7 +311,7 @@
     const msgs = document.getElementById('hct-msgs');
     const d = document.createElement('div');
     d.className = 'hct-msg bot'; d.id = 'hct-typing';
-    d.innerHTML = `<div class="hct-avatar">📚</div><div class="hct-bubble hct-typing"><span></span><span></span><span></span></div>`;
+    d.innerHTML = `<div class="hct-avatar"><svg viewBox="0 0 24 24" fill="none"><path d="M12 18V7C12 7 8.5 5.5 4 6.5V17.5C8.5 16.5 12 18 12 18Z" fill="#C8A84B" opacity="0.9"/><path d="M12 18V7C12 7 15.5 5.5 20 6.5V17.5C15.5 16.5 12 18 12 18Z" fill="#E2C06A" opacity="0.7"/><rect x="11.25" y="6.5" width="1.5" height="12" rx="0.75" fill="#C8A84B"/></svg></div><div class="hct-bubble hct-typing"><span></span><span></span><span></span></div>`;
     msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
   }
 
