@@ -1,7 +1,6 @@
 # HCT Library URLs for weekly web scraping
 # Add one URL per line. Lines starting with # are comments.
 # These are scraped automatically every Sunday at 02:00 GST.
-# After adding URLs, run: python scripts/scrape.py --urls urls.txt --output knowledge_base/documents/web/
 
 # ── Main Library Pages ─────────────────────────────────────────────────────────
 https://hct.ac.ae/en/libraries/
@@ -9,22 +8,17 @@ https://hct.ac.ae/en/libraries/about-hct-library/
 https://hct.ac.ae/en/libraries/about-hct-library/library-staff-hours/
 https://hct.ac.ae/en/libraries/e-resources/all-databases/
 https://hct.ac.ae/en/libraries/e-resources/database-trials/
-https://hct.primo.exlibrisgroup.com/discovery/jsearch?vid=971HCT_INST:971HCT_VU1
 https://hct.ac.ae/en/libraries/supporting-you/borrowing-privileges/
 https://hct.ac.ae/en/libraries/supporting-you/interlibrary-loan/
 https://hct.ac.ae/en/libraries/supporting-you/recommend-a-purchase/
-Request an article
-https://myhctsupport.hct.ac.ae/HEAT/Modules/SelfService/?NoDefaultProvider=True#serviceCatalog/request/51A8DEA49F664FF79D7009BB3450371E
 https://library.hct.ac.ae/services
 
-# ── Library Guides ─────────────────────────────────────────────────────────────
-https://libguides.hct.ac.ae/?b=s
-# 
+# ── Library Catalogue ──────────────────────────────────────────────────────────
+# Note: Primo Discovery requires login — skipped for scraping
+# https://hct.primo.exlibrisgroup.com/discovery/jsearch?vid=971HCT_INST:971HCT_VU1
 
-# ── Subject Guides (LibGuides) ─────────────────────────────────────────────────
-https://libguides.hct.ac.ae/?b=s
+# ── Article Request (login-protected — not scrapeable) ─────────────────────────
+# https://myhctsupport.hct.ac.ae/HEAT/Modules/SelfService/?NoDefaultProvider=True#serviceCatalog/request/51A8DEA49F664FF79D7009BB3450371E
 
-# Instructions:
-# 1. Replace the example URLs above with your actual library URLs (remove the # prefix)
-# 2. Commit this file to your GitHub repository
-# 3. The weekly reindex workflow will automatically scrape and index these pages
+# ── Library Guides (LibGuides) ─────────────────────────────────────────────────
+https://libguides.hct.ac.ae/?b=s
