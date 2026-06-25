@@ -4,7 +4,7 @@
   "last_updated": "2026-06-08",
   "entries": [
 
-    {"id":"lib-hours-1","category":"policies","q":"What are the library opening hours?","a":"HCT Library is open Monday through Thursday from 8:00 AM to 4:00 PM. The library is closed on Fridays, Saturdays, and UAE public holidays. During examination periods, extended hours may be offered — check the library website for announcements: https://hct.ac.ae/en/libraries/about-hct-library/library-staff-hours/\n\nFor after-hours access to e-resources, all databases are available 24/7 through the library portal.","source":"Library Policies","tags":["hours","opening","schedule"]},
+    {"id":"lib-hours-1","category":"policies","q":"What are the library opening hours?","a":"HCT Library is open Monday through Thursday from 8:00 AM to 4:00 PM & Friday from 8.00 AM to 12:30 PM. The library is closed on Saturdays and Sunday, and UAE public holidays. During examination periods, extended hours may be offered — check the library website for announcements: https://hct.ac.ae/en/libraries/about-hct-library/library-staff-hours/\n\nFor after-hours access to e-resources, all databases are available 24/7 through the library portal.","source":"Library Policies","tags":["hours","opening","schedule"]},
 
     {"id":"lib-hours-2","category":"policies","q":"Is the library open during Ramadan?","a":"During Ramadan, HCT Library typically operates reduced hours: Sunday through Thursday from 9:00 AM to 3:00 PM. Please check the library website or contact us at library@hct.ac.ae for the exact schedule, as hours may vary by campus.\n\nCurrent hours: https://hct.ac.ae/en/libraries/about-hct-library/library-staff-hours/","source":"Library Policies","tags":["hours","Ramadan","schedule"]},
 
