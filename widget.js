@@ -278,14 +278,14 @@
     if (blocked) return { text: blocked, sources: [] };
     const results = search(q);
     if (!results.length) return {
-      text: "I don't have specific information on that. Please contact the library:\n• Email: lrstech@hct.ac.ae\n• Website: https://hct.ac.ae/en/libraries/\n• Open Mon–Thu 8.00 AM – 4.00 PM, Friday from 8:00 AM to 12:30 PM",
+      text: "I don't have specific information on that. Please write your inquiry in adiffernt way or contact the library:\n• Email: lrstech@hct.ac.ae\n• Website: https://hct.ac.ae/en/libraries/\n• Open Mon–Thu 8.00 AM – 4.00 PM, Friday from 8:00 AM to 12:30 PM",
       sources: []
     };
     return { text: results[0].e.a, sources: [...new Set(results.map(r => r.e.source).filter(Boolean))] };
   }
 
   const BLOCKED = [
-    { r: /\b(porn|xxx|adult content|explicit material)\b/i, t: "Thank you for your message. Your query falls outside the scope of the HCT Library AI Assistant. For library assistance: library@hct.ac.ae" },
+    { r: /\b(porn|xxx|adult content|explicit material)\b/i, t: "Thank you for your message. Your query falls outside the scope of the HCT Library AI Assistant. For library assistance: lrstech@hct.ac.ae" },
     { r: /\b(write my (essay|assignment|report|thesis)|do my homework)\b/i, t: "The HCT Library Assistant cannot write academic work for submission. I can help you find sources, learn citation formats, and access research databases." },
   ];
   function checkMod(q) {
