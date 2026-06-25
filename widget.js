@@ -278,7 +278,7 @@
     if (blocked) return { text: blocked, sources: [] };
     const results = search(q);
     if (!results.length) return {
-      text: "I don't have specific information on that. Please contact the library:\n• Email: library@hct.ac.ae\n• Website: https://library.hct.ac.ae\n• Open Sun–Thu 8 AM – 9 PM",
+      text: "I don't have specific information on that. Please contact the library:\n• Email: lrstech@hct.ac.ae\n• Website: https://hct.ac.ae/en/libraries/\n• Open Mon–Thu 8.00 AM – 4.00 PM",
       sources: []
     };
     return { text: results[0].e.a, sources: [...new Set(results.map(r => r.e.source).filter(Boolean))] };
