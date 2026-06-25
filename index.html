@@ -340,6 +340,11 @@
     .messages::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
 
     /* Welcome card */
+    }.welcome-pinned {
+      padding: 24px 28px 0;
+      background: var(--surface-2);
+      flex-shrink: 0;
+    }
     .welcome-card {
       background: linear-gradient(135deg, var(--hct-navy) 0%, var(--hct-navy-mid) 60%, #004080 100%);
       border-radius: var(--radius-lg);
@@ -740,10 +745,11 @@
       </div>
     </div>
 
-    <!-- Messages -->
-    <div class="messages" id="messages">
-
-      <!-- Welcome card -->
+    <!-- Pinned Welcome card -->
+    <div class="welcome-pinned">
+      <div class="welcome-card">
+        
+        <!-- Welcome card -->
       <div class="welcome-card">
         <div class="welcome-header">
           <div class="welcome-icon">👋</div>
@@ -763,6 +769,14 @@
           <button class="quick-btn" onclick="quickAsk('What is plagiarism and how do I avoid it?')">⚠️ Avoid plagiarism</button>
         </div>
       </div>
+      </div>
+    </div>
+
+    
+    <!-- Messages -->
+    <div class="messages" id="messages">
+
+      
 
     </div><!-- /messages -->
 
