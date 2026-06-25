@@ -844,7 +844,7 @@ function demoRespond(query) {
   const results = demoSearch(query);
   if (!results.length) {
     return {
-      text: "Thank you for your question. I don't have specific information on that topic in my current knowledge base.\n\nFor assistance, please:\n\n• Contact the Reference Desk: library@hct.ac.ae\n• Visit the library website: https://hct.ac.ae/en/libraries/\n• Ask a librarian in person\n\nLibrary hours: Sunday–Thursday, 8:00 AM – 9:00 PM",
+      text: "Thank you for your question. I don't have specific information on that topic in my current knowledge base.\n\nFor assistance, please:\n\n• Contact the Library team: lrstech@hct.ac.ae\n• Visit the library website: https://hct.ac.ae/en/libraries/\n• Ask a librarian in person\n\nLibrary hours: Sunday–Thursday, 8:00 AM – 9:00 PM",
       sources: []
     };
   }
@@ -861,8 +861,8 @@ const BLOCKED = [
   { r: /\b(how to hack|pirate software|crack license|drug (buy|sell|make))\b/i, t: 'general' },
 ];
 const REFUSALS = {
-  general:  "Thank you for your message.\n\nYour query falls outside the scope of the HCT Library AI Agent. This assistant supports academic research and library resource discovery only.\n\nFor assistance: library@hct.ac.ae",
-  sensitive:"Thank you for your message.\n\nThe HCT Library AI Agent cannot respond to this query. If you are experiencing personal difficulties, HCT provides confidential support through Student Affairs and Counselling Services.\n\nAcademic support: library@hct.ac.ae",
+  general:  "Thank you for your message.\n\nYour query falls outside the scope of the HCT Library AI Agent. This assistant supports academic research and library resource discovery only.\n\nFor assistance: mosman@hct.ac.ae",
+  sensitive:"Thank you for your message.\n\nThe HCT Library AI Agent cannot respond to this query. If you are experiencing personal difficulties, HCT provides confidential support through Student Affairs and Counselling Services.\n\nAcademic support: https://hct.ac.ae/ar/",
   academic: "Thank you for your message.\n\nThe HCT Library AI Agent cannot write or complete academic work for submission.\n\nI can help you find academic sources, learn APA citation, and access research databases. Please ask a new question.",
 };
 function moderate(text) {
@@ -963,7 +963,7 @@ async function sendMessage() {
       responseText = data.response || 'Sorry, I could not generate a response.';
       sources = data.sources || [];
     } catch (e) {
-      responseText = "I'm having trouble connecting to the AI service. Please try again, or contact the library at library@hct.ac.ae";
+      responseText = "I'm having trouble connecting to the AI service. Please try again, or contact the library at mosman@hct.ac.ae";
     }
   } else {
     const result = demoRespond(query);
